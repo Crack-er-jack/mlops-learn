@@ -1,3 +1,4 @@
+import textwrap
 """
 MLOpsHub: Production Quest - Custom Theme & CSS Styling
 
@@ -232,7 +233,7 @@ def inject_custom_css() -> None:
     }
     </style>
     """
-    st.markdown(custom_css, unsafe_allow_html=True)
+    st.markdown(textwrap.dedent(custom_css), unsafe_allow_html=True)
 
 
 def render_terminal(command: str, output: str, title: str = "bash — 80x24") -> None:
@@ -259,7 +260,7 @@ def render_terminal(command: str, output: str, title: str = "bash — 80x24") ->
         </div>
     </div>
     """
-    st.markdown(terminal_html, unsafe_allow_html=True)
+    st.markdown(textwrap.dedent(terminal_html), unsafe_allow_html=True)
 
 
 def render_role_header(role_name: str, emoji: str, desk_desc: str) -> None:
@@ -287,7 +288,7 @@ def render_role_header(role_name: str, emoji: str, desk_desc: str) -> None:
         </div>
     </div>
     """
-    st.markdown(html_content, unsafe_allow_html=True)
+    st.markdown(textwrap.dedent(html_content), unsafe_allow_html=True)
 
 
 def render_neon_card(title: str, content_html: str, color_variant: str = "cyan") -> None:
@@ -314,4 +315,4 @@ def render_neon_card(title: str, content_html: str, color_variant: str = "cyan")
         </div>
     </div>
     """
-    st.markdown(card_html, unsafe_allow_html=True)
+    st.markdown(textwrap.dedent(card_html), unsafe_allow_html=True)
