@@ -115,35 +115,30 @@ class BaseMission:
         col_biz, col_tech = st.columns(2)
 
         with col_biz:
-            st.markdown(f"""
-            <div style="background: rgba(88, 166, 255, 0.08); border: 1px solid #388bfd; border-radius: 10px; padding: 16px; min-height: 220px;">
-                <div style="color: #79c0ff; font-weight: 800; font-size: 1.05rem; margin-bottom: 8px;">
-                    💼 BUSINESS & STRATEGIC POV
-                </div>
-                <div style="color: #d1d5db; font-size: 0.92rem; line-height: 1.6;">
-                    {business_pov}
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown(
+                f'<div style="background: rgba(88, 166, 255, 0.08); border: 1px solid #388bfd; border-radius: 10px; padding: 16px; min-height: 220px;">'
+                f'<div style="color: #79c0ff; font-weight: 800; font-size: 1.05rem; margin-bottom: 8px;">💼 BUSINESS & STRATEGIC POV</div>'
+                f'<div style="color: #d1d5db; font-size: 0.92rem; line-height: 1.6;">{business_pov}</div>'
+                f'</div>',
+                unsafe_allow_html=True
+            )
 
         with col_tech:
-            st.markdown(f"""
-            <div style="background: rgba(0, 245, 255, 0.08); border: 1px solid #00f5ff; border-radius: 10px; padding: 16px; min-height: 220px;">
-                <div style="color: #00f5ff; font-weight: 800; font-size: 1.05rem; margin-bottom: 8px;">
-                    ⚙️ TECHNICAL & ENGINEERING POV
-                </div>
-                <div style="color: #d1d5db; font-size: 0.92rem; line-height: 1.6;">
-                    {technical_pov}
-                </div>
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown(
+                f'<div style="background: rgba(0, 245, 255, 0.08); border: 1px solid #00f5ff; border-radius: 10px; padding: 16px; min-height: 220px;">'
+                f'<div style="color: #00f5ff; font-weight: 800; font-size: 1.05rem; margin-bottom: 8px;">⚙️ TECHNICAL & ENGINEERING POV</div>'
+                f'<div style="color: #d1d5db; font-size: 0.92rem; line-height: 1.6;">{technical_pov}</div>'
+                f'</div>',
+                unsafe_allow_html=True
+            )
 
         if real_world_case:
-            st.markdown(f"""
-            <div style="background: rgba(255, 0, 127, 0.07); border-left: 4px solid #ff007f; border-radius: 8px; padding: 12px 16px; margin-top: 10px; font-size: 0.9rem; color: #f0f6fc;">
-                <b>💥 Real-World Industry Case Study:</b> {real_world_case}
-            </div>
-            """, unsafe_allow_html=True)
+            st.markdown(
+                f'<div style="background: rgba(255, 0, 127, 0.07); border-left: 4px solid #ff007f; border-radius: 8px; padding: 12px 16px; margin-top: 10px; font-size: 0.9rem; color: #f0f6fc;">'
+                f'<b>💥 Real-World Industry Case Study:</b> {real_world_case}'
+                f'</div>',
+                unsafe_allow_html=True
+            )
 
     def render_navigation_footer(self) -> None:
         """Render 'Next Mission' or 'Complete Step' button at the bottom of the mission."""

@@ -246,21 +246,21 @@ def render_terminal(command: str, output: str, title: str = "bash — 80x24") ->
         output: Terminal stdout/stderr content.
         title: Window header title.
     """
-    terminal_html = f"""
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <span class="terminal-circle circle-red"></span>
-            <span class="terminal-circle circle-yellow"></span>
-            <span class="terminal-circle circle-green"></span>
-            <span style="margin-left: 8px; font-weight: 600;">{title}</span>
-        </div>
-        <div class="terminal-body">
-            <div><span class="terminal-prompt">neonbyte@prod-node:~$</span> {command}</div>
-            <div class="terminal-output" style="white-space: pre-wrap; margin-top: 6px;">{output}</div>
-        </div>
-    </div>
-    """
-    st.markdown(textwrap.dedent(terminal_html), unsafe_allow_html=True)
+    terminal_html = (
+        f'<div class="terminal-window">'
+        f'<div class="terminal-header">'
+        f'<span class="terminal-circle circle-red"></span>'
+        f'<span class="terminal-circle circle-yellow"></span>'
+        f'<span class="terminal-circle circle-green"></span>'
+        f'<span style="margin-left: 8px; font-weight: 600;">{title}</span>'
+        f'</div>'
+        f'<div class="terminal-body">'
+        f'<div><span class="terminal-prompt">neonbyte@prod-node:~$</span> {command}</div>'
+        f'<div class="terminal-output" style="white-space: pre-wrap; margin-top: 6px;">{output}</div>'
+        f'</div>'
+        f'</div>'
+    )
+    st.markdown(terminal_html, unsafe_allow_html=True)
 
 
 def render_role_header(role_name: str, emoji: str, desk_desc: str) -> None:
@@ -272,23 +272,23 @@ def render_role_header(role_name: str, emoji: str, desk_desc: str) -> None:
         emoji: Visual avatar icon for the role.
         desk_desc: Visual description of the role's workstation desk.
     """
-    html_content = f"""
-    <div class="roleplay-card">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div class="role-badge">
-                <span style="font-size: 1.3rem;">{emoji}</span>
-                <span>{role_name.upper()}</span>
-            </div>
-            <span style="color: #8b949e; font-size: 0.85rem; font-weight: 600;">
-                🏢 NEONBYTE HQ • SPRINT 4
-            </span>
-        </div>
-        <div class="desk-visual">
-            <strong>🪑 Workplace Environment:</strong> {desk_desc}
-        </div>
-    </div>
-    """
-    st.markdown(textwrap.dedent(html_content), unsafe_allow_html=True)
+    html_content = (
+        f'<div class="roleplay-card">'
+        f'<div style="display: flex; justify-content: space-between; align-items: center;">'
+        f'<div class="role-badge">'
+        f'<span style="font-size: 1.3rem;">{emoji}</span>'
+        f'<span>{role_name.upper()}</span>'
+        f'</div>'
+        f'<span style="color: #8b949e; font-size: 0.85rem; font-weight: 600;">'
+        f'🏢 NEONBYTE HQ • SPRINT 4'
+        f'</span>'
+        f'</div>'
+        f'<div class="desk-visual">'
+        f'<strong>🪑 Workplace Environment:</strong> {desk_desc}'
+        f'</div>'
+        f'</div>'
+    )
+    st.markdown(html_content, unsafe_allow_html=True)
 
 
 def render_neon_card(title: str, content_html: str, color_variant: str = "cyan") -> None:
@@ -307,12 +307,20 @@ def render_neon_card(title: str, content_html: str, color_variant: str = "cyan")
         "purple": "neon-card neon-card-purple"
     }.get(color_variant, "neon-card")
 
-    card_html = f"""
-    <div class="{variant_class}">
-        <div class="neon-title">{title}</div>
-        <div style="color: #c9d1d9; font-size: 0.95rem; line-height: 1.55;">
-            {content_html}
-        </div>
-    </div>
-    """
-    st.markdown(textwrap.dedent(card_html), unsafe_allow_html=True)
+    # Strip indentation and blank lines from content_html so Markdown never parses it as a code block
+    raw_lines = [line.strip() for line in content_html.strip().splitlines() if line.strip()]
+    cleaned_lines = []
+    for i, line in enumerate(raw_lines):
+        if i < len(raw_lines) - 1 and not line.endswith(("<br>", "<br/>", "<br />", "</div>", "</p>", "</li>")):
+            cleaned_lines.append(line + "<br>")
+        else:
+            cleaned_lines.append(line)
+    clean_body = "".join(cleaned_lines)
+
+    card_html = (
+        f'<div class="{variant_class}">'
+        f'<div class="neon-title">{title}</div>'
+        f'<div style="color: #c9d1d9; font-size: 0.95rem; line-height: 1.55;">{clean_body}</div>'
+        f'</div>'
+    )
+    st.markdown(card_html, unsafe_allow_html=True)
