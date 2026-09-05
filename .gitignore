@@ -1,0 +1,30 @@
+# Python & Caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments
+.venv/
+venv/
+env/
+.env
+
+# Data & Databases
+*.csv
+*.dat
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Streamlit
+.streamlit/secrets.toml
