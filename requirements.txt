@@ -1,0 +1,19 @@
+# MLOpsHub: Production Quest Dependencies
+# Core web framework
+streamlit>=1.35.0
+
+# Scientific computing & machine learning
+numpy>=1.26.0
+pandas>=2.2.0
+scikit-learn>=1.4.0
+scipy>=1.12.0
+
+# Visualization & Network analysis
+plotly>=5.20.0
+networkx>=3.2.0
+matplotlib>=3.8.0
+
+# Utilities & Configuration
+pyyaml>=6.0.1
+pydantic>=2.6.0
+pytest>=8.0.0
